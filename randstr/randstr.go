@@ -3,6 +3,7 @@ package randstr
 import (
 	"bytes"
 	"math/rand"
+	"time"
 )
 
 type Generator interface {
@@ -12,6 +13,14 @@ type Generator interface {
 type StringGenerator struct {
 	letters []rune
 	r       rand.Source
+}
+
+// NewStringGenerator creates a new string generator
+func NewStringGenerator(letters string) *StringGenerator {
+	return &StringGenerator{
+		letters: []rune(letters),
+		r:       rand.NewSource(time.Now().UnixNano()),
+	}
 }
 
 func generate(s StringGenerator, n int) string {
