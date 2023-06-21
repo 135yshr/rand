@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestDefaultGeneratorGenerate tests creating a random string.
-func TestDefaultGeneratorGenerate(t *testing.T) {
+// TestUserNameGeneratorGenerate tests creating a random user name.
+func TestUserNameGeneratorGenerate(t *testing.T) {
 	type args struct {
 		length int
 	}
@@ -20,28 +20,19 @@ func TestDefaultGeneratorGenerate(t *testing.T) {
 		args args
 		want want
 	}{
-		"should return a 5 characters string of mixed case": {
+		"should return a string of 5 characters": {
 			args: args{
 				length: 5,
 			},
 			want: want{
 				length:  5,
-				pattern: "^[ -~]{5}",
-			},
-		},
-		"should return a 10 characters string of mixed case": {
-			args: args{
-				length: 10,
-			},
-			want: want{
-				length:  10,
-				pattern: "^[ -~]{10}",
+				pattern: "[a-zA-Z0-9]{5}",
 			},
 		},
 	}
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
-			sut := randstr.NewDefaultGenerator()
+			sut := randstr.NewUserNameGenerator()
 			require.NotNil(t, sut)
 
 			str := sut.Generate(tt.args.length)
