@@ -29,6 +29,15 @@ func TestGenerate(t *testing.T) {
 				pattern: "[a-z]+",
 			},
 		},
+		"should return a string of length 10": {
+			args: args{
+				length: 10,
+			},
+			want: want{
+				length:  10,
+				pattern: "[a-z]+",
+			},
+		},
 	}
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
@@ -38,6 +47,7 @@ func TestGenerate(t *testing.T) {
 			str := g.Generate(tt.args.length)
 			require.Len(t, str, tt.want.length)
 			require.Regexp(t, tt.want.pattern, str)
+			t.Logf("return: %s", str)
 		})
 	}
 
