@@ -1,10 +1,5 @@
 package randstr
 
-import (
-	"math/rand"
-	"time"
-)
-
 const (
 	lowercase = "abcdefghijklmnopqrstuvwxyz"
 	uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -16,10 +11,7 @@ type defaultGenerator StringGenerator
 
 // NewDefaultGenerator returns a new Default generator.
 func NewDefaultGenerator() Generator {
-	return &defaultGenerator{
-		letters: []rune(lowercase + uppercase + numbers + symbols),
-		r:       rand.NewSource(time.Now().UnixNano()),
-	}
+	return (*defaultGenerator)(NewStringGenerator(lowercase + uppercase + numbers + symbols))
 }
 
 // Generate generates a random string.

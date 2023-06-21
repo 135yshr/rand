@@ -1,18 +1,10 @@
 package randstr
 
-import (
-	"math/rand"
-	"time"
-)
-
 type userNameGenerator StringGenerator
 
 // NewUserNameGenerator returns a new UserName generator.
 func NewUserNameGenerator() Generator {
-	return &userNameGenerator{
-		letters: []rune(lowercase + uppercase + numbers),
-		r:       rand.NewSource(time.Now().UnixNano()),
-	}
+	return (*userNameGenerator)(NewStringGenerator(lowercase + uppercase + numbers))
 }
 
 // Generate generates a random user name.
