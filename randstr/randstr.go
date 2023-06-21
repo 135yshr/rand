@@ -6,24 +6,36 @@ import (
 	"time"
 )
 
+const (
+	lowercase = "abcdefghijklmnopqrstuvwxyz"
+	uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	numbers   = "0123456789"
+	symbols   = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+)
+
 type Generator interface {
 	Generate(int) string
 }
 
-type StringGenerator struct {
+type stringGenerator struct {
 	r       rand.Source
 	letters []rune
 }
 
-// NewStringGenerator creates a new string generator
-func NewStringGenerator(letters string) *StringGenerator {
-	return &StringGenerator{
+func newStringGenerator(letters string) Generator {
+	return &stringGenerator{
 		letters: []rune(letters),
 		r:       rand.NewSource(time.Now().UnixNano()),
 	}
 }
 
-func generate(s StringGenerator, n int) string {
+// NewDefaultGenerator returns a new Custom generator.
+func NewCustomGenerator(letters string) Generator {
+	return newStringGenerator(letters)
+}
+
+// NewDefaultGenerator returns a new generator
+func (s stringGenerator) Generate(n int) string {
 	var bb bytes.Buffer
 	bb.Grow(n)
 

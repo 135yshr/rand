@@ -1,13 +1,8 @@
 package randstr
 
-type passwordGenerator StringGenerator
+type passwordGenerator stringGenerator
 
 // NewPasswordGenerator creates a new password generator
 func NewPasswordGenerator() Generator {
-	return (*passwordGenerator)(NewStringGenerator(lowercase + uppercase + numbers + symbols))
-}
-
-// Generate generates a password
-func (g *passwordGenerator) Generate(n int) string {
-	return generate(StringGenerator(*g), n)
+	return newStringGenerator(lowercase + uppercase + numbers + symbols)
 }
