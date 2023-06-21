@@ -7,7 +7,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestGeneratel tests the Dummy function.
+// TestGenerate tests the Dummy function.
 func TestGenerate(t *testing.T) {
-	require.Equal(t, "dummy", randstr.Generate())
+	g := randstr.NewDefaultGenerator()
+	require.NotNil(t, g)
+
+	str := g.Generate(5)
+	require.Len(t, str, 5)
+	require.Regexp(t, "[a-z]+", str)
 }
