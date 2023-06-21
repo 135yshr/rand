@@ -2,7 +2,7 @@
 
 [![go](https://github.com/135yshr/rand/workflows/go/badge.svg)](https://github.com/135yshr/rand/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/135yshr/rand)](https://goreportcard.com/report/github.com/135yshr/rand)
-[![GoDoc](http://img.shields.io/badge/GoDoc-Reference-blue.svg)](https://godoc.org/github.com/135yshr/rand/v2)
+[![GoDoc](http://img.shields.io/badge/GoDoc-Reference-blue.svg)](https://godoc.org/github.com/135yshr/rand)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 This is a library for generating various random data to use in the program.
