@@ -11,8 +11,8 @@ type Generator interface {
 }
 
 type StringGenerator struct {
-	letters []rune
 	r       rand.Source
+	letters []rune
 }
 
 // NewStringGenerator creates a new string generator
