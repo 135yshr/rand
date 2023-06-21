@@ -29,6 +29,15 @@ func TestUserNameGeneratorGenerate(t *testing.T) {
 				pattern: "[a-zA-Z0-9]{5}",
 			},
 		},
+		"should return a string of 10 characters": {
+			args: args{
+				length: 10,
+			},
+			want: want{
+				length:  10,
+				pattern: "[a-zA-Z0-9]{10}",
+			},
+		},
 	}
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
