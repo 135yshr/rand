@@ -12,6 +12,7 @@ type Generator interface {
 
 const (
 	lowercase = "abcdefghijklmnopqrstuvwxyz"
+	uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 )
 
 type defaultGenerator struct {
@@ -23,7 +24,7 @@ type defaultGenerator struct {
 func NewDefaultGenerator() Generator {
 	seed := time.Now().UnixNano()
 	return &defaultGenerator{
-		letters: []rune(lowercase),
+		letters: []rune(lowercase + uppercase),
 		r:       rand.NewSource(seed),
 	}
 }

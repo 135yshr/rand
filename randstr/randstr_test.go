@@ -20,22 +20,22 @@ func TestGenerate(t *testing.T) {
 		args args
 		want want
 	}{
-		"should return a string of length 5": {
+		"should return a 5 characters string of mixed case": {
 			args: args{
 				length: 5,
 			},
 			want: want{
 				length:  5,
-				pattern: "[a-z]+",
+				pattern: "[a-zA-Z]{5}",
 			},
 		},
-		"should return a string of length 10": {
+		"should return a 10 characters string of mixed case": {
 			args: args{
 				length: 10,
 			},
 			want: want{
 				length:  10,
-				pattern: "[a-z]+",
+				pattern: "[a-zA-Z]{10}",
 			},
 		},
 	}
