@@ -14,6 +14,7 @@ const (
 	lowercase = "abcdefghijklmnopqrstuvwxyz"
 	uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	numbers   = "0123456789"
+	symbols   = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 )
 
 type defaultGenerator struct {
@@ -25,7 +26,7 @@ type defaultGenerator struct {
 func NewDefaultGenerator() Generator {
 	seed := time.Now().UnixNano()
 	return &defaultGenerator{
-		letters: []rune(lowercase + uppercase + numbers),
+		letters: []rune(lowercase + uppercase + numbers + symbols),
 		r:       rand.NewSource(seed),
 	}
 }

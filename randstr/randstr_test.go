@@ -26,7 +26,7 @@ func TestGenerate(t *testing.T) {
 			},
 			want: want{
 				length:  5,
-				pattern: "[a-zA-Z0-9]{5}",
+				pattern: "^[ -~]{5}",
 			},
 		},
 		"should return a 10 characters string of mixed case": {
@@ -35,7 +35,7 @@ func TestGenerate(t *testing.T) {
 			},
 			want: want{
 				length:  10,
-				pattern: "[a-zA-Z0-9]{10}",
+				pattern: "^[ -~]{10}",
 			},
 		},
 	}
