@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestGenerate tests the Dummy function.
-func TestGenerate(t *testing.T) {
+// TestDefaultGeneratorGenerate tests the Dummy function.
+func TestDefaultGeneratorGenerate(t *testing.T) {
 	type args struct {
 		length int
 	}
@@ -41,10 +41,10 @@ func TestGenerate(t *testing.T) {
 	}
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
-			g := randstr.NewDefaultGenerator()
-			require.NotNil(t, g)
+			sut := randstr.NewDefaultGenerator()
+			require.NotNil(t, sut)
 
-			str := g.Generate(tt.args.length)
+			str := sut.Generate(tt.args.length)
 			require.Len(t, str, tt.want.length)
 			require.Regexp(t, tt.want.pattern, str)
 			t.Logf("return: %s", str)
