@@ -7,8 +7,8 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestUserNameGeneratorGenerate tests creating a random user name.
-func TestUserNameGeneratorGenerate(t *testing.T) {
+// TestIDGeneratorGenerate tests creating a random user name.
+func TestIDGeneratorGenerate(t *testing.T) {
 	type args struct {
 		length int
 	}
@@ -41,7 +41,7 @@ func TestUserNameGeneratorGenerate(t *testing.T) {
 	}
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
-			sut := randstr.NewUserNameGenerator()
+			sut := randstr.NewIDGenerator()
 			require.NotNil(t, sut)
 
 			str := sut.Generate(tt.args.length)
