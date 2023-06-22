@@ -21,9 +21,9 @@ go get -u github.com/135yshr/rand
 
 ### How to generate random ID
 
-```go
-package main
+The ID generator creates a string using alphanumeric characters.
 
+```go
 import (
 	"fmt"
 
@@ -32,9 +32,39 @@ import (
 
 func main() {
 	gen := randstr.NewUserNameGenerator()
-	fmt.Printf("Generate username 1: %s\n", gen.Generate(8))
-	fmt.Printf("Generate username 2: %s\n", gen.Generate(8))
-	fmt.Printf("Generate username 3: %s\n", gen.Generate(8))
+	fmt.Printf("Generated ID: %s\n", gen.Generate(8))
+}
+```
+
+### How to generate random Password
+
+```go
+import (
+	"fmt"
+
+	"github.com/135yshr/rand/randstr"
+)
+
+func main() {
+	gen := randstr.NewPasswordGenerator()
+	fmt.Printf("Generated password: %s\n", gen.Generate(12))
+}
+```
+
+### How to generate random string
+
+When you want to use specified characters, please use the custom generator.
+
+```go
+import (
+	"fmt"
+
+	"github.com/135yshr/rand/randstr"
+)
+
+func main() {
+	gen := randstr.NewCustomGenerator("abcdef01234567890-/")
+	fmt.Printf("Generated random string: %s\n", gen.Generate(10))
 }
 ```
 
