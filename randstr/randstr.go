@@ -35,7 +35,7 @@ func NewCustomGenerator(letters string) Generator {
 }
 
 // NewDefaultGenerator returns a new generator
-func (s stringGenerator) Generate(n int) string {
+func (s *stringGenerator) Generate(n int) string {
 	var bb bytes.Buffer
 	bb.Grow(n)
 

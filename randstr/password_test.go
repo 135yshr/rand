@@ -10,7 +10,8 @@ import (
 // TestPasswordGeneratorGenerate tests the password generator
 func TestPasswordGeneratorGenerate(t *testing.T) {
 	type args struct {
-		length int
+		length   int
+		policies []randstr.PasswordPolicy
 	}
 	type want struct {
 		length  int
@@ -38,10 +39,58 @@ func TestPasswordGeneratorGenerate(t *testing.T) {
 				pattern: "^[ -~]{10}",
 			},
 		},
+		"should return a 5 characters string that definitely contains uppercase letters": {
+			args: args{
+				length: 5,
+				policies: []randstr.PasswordPolicy{
+					randstr.PasswordPolicyUppercase(),
+				},
+			},
+			want: want{
+				length:  5,
+				pattern: "[A-Z]",
+			},
+		},
+		"should return a 5 characters string that definitely contains lowercase letters": {
+			args: args{
+				length: 5,
+				policies: []randstr.PasswordPolicy{
+					randstr.PasswordPolicyLowercase(),
+				},
+			},
+			want: want{
+				length:  5,
+				pattern: "[a-z]",
+			},
+		},
+		"should return a 5 characters string that definitely contains numbers": {
+			args: args{
+				length: 5,
+				policies: []randstr.PasswordPolicy{
+					randstr.PasswordPolicyNumbers(),
+				},
+			},
+			want: want{
+				length:  5,
+				pattern: "[0-9]",
+			},
+		},
+		"should return a 5 characters string that definitely contains symbols": {
+			args: args{
+				length: 5,
+				policies: []randstr.PasswordPolicy{
+					randstr.PasswordPolicySymbols(),
+				},
+			},
+			want: want{
+				length:  5,
+				pattern: "[!-/:-@[-`{-~]",
+			},
+		},
 	}
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
-			sut := randstr.NewPasswordGenerator()
+			sut := randstr.NewPasswordGenerator(tt.args.policies...)
 			require.NotNil(t, sut)
 
 			str := sut.Generate(tt.args.length)
