@@ -69,7 +69,7 @@ func (g *passwordGenerator) Generate(length int) string {
 	password := g.stringGenerator.Generate(length)
 	for _, policy := range g.policies {
 		if !policy(password) {
-			return g.stringGenerator.Generate(length)
+			return g.Generate(length)
 		}
 	}
 	return password
